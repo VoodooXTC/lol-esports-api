@@ -5,7 +5,8 @@ var express    = require('express'),
     middleware = require('./middleware'),
     routes     = require('./routes'),
 
-    app        = express();
+    app        = express(),
+    router	   = express.Router();
 
 // -- Configure ----------------------------------------------------------------
 app.set('name', 'LoL eSports Api');
@@ -16,7 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // REGISTER OUR ROUTES -------------------------------
-app.use('/api', routes);
+router.route('/champs')
+		.post(routes.champs.champs.post);
+
+app.use('/api', router);
+
 app.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
@@ -25,4 +30,4 @@ app.get('/', function(req, res) {
 // =============================================================================
 app.listen(config.port)
 
-modules.exports = app;
+module.exports = app;
