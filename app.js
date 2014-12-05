@@ -13,17 +13,19 @@ app.set('name', 'LoL eSports Api');
 app.set('env', config.env);
 app.set('port', config.port);
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // REGISTER OUR ROUTES -------------------------------
 router.route('/champs')
-		.post(routes.champs.champs.post);
+		.post(routes.champs.postChamp);
 
 app.use('/api', router);
 
+//app.post('/api/champs',    routes.champs.postChamp);
+
 app.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });	
+	res.json({ message: 'hooray! welcome to our api!' });
 });
 
 // START THE SERVER
