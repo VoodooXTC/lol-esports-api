@@ -1,3 +1,4 @@
 module.exports = {
-	champs : require('./champs')
+	champs : require('./champs'),
+	series : require('./series')
 }

@@ -19,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // REGISTER OUR ROUTES -------------------------------
 router.route('/champs')
 		.post(routes.champs.postChamp);
+router.route('/series')
+        .get(routes.series.getSeries);
 
 app.use('/api', router);
 
