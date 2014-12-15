@@ -6,7 +6,9 @@ var express    = require('express'),
     routes     = require('./routes'),
 
     app        = express(),
-    router	   = express.Router();
+    router	   = express.Router(),
+
+    schedule   = require('./schedule');
 
 // -- Configure ----------------------------------------------------------------
 app.set('name', 'LoL eSports Api');
@@ -17,14 +19,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // REGISTER OUR ROUTES -------------------------------
-router.route('/champs')
-		.post(routes.champs.postChamp);
-router.route('/series')
-        .get(routes.series.getSeries);
+router.route('/champs').post(routes.champs.postChamp);
+
+router.route('/series').get(routes.series.getSeries);
 
 app.use('/api', router);
-
-//app.post('/api/champs',    routes.champs.postChamp);
 
 app.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
